@@ -2,7 +2,6 @@
     var theCanvas = document.getElementById("the-canvas");
     var canvasCtx = theCanvas.getContext("2d");
 
-
     function buildBall(x, y) {
         return {
             x: x,
@@ -17,7 +16,7 @@
 
     var down = +1;
     var rigth = +1;
-	var speed = 5;
+	var speed = 10;
 
     function animationFrame() {
         canvasCtx.clearRect(0, 0, theCanvas.width, theCanvas.height);
