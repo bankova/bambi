@@ -18,8 +18,13 @@
     }
 	canvas{ position: absolute;
 				left: 0px;
-				top: 80px;}
-        svg, #the-canvas { border: 2px solid black; }
+				top: 80px;
+
+	}
+        svg, #the-canvas { 
+            border: 2px solid black; 
+
+        }
     </style>
 </head>
     <body>
@@ -29,16 +34,16 @@
                 <li><a href="#" id="new-game">New Game</a></li>
             </ul>
         </header>
+        	<div>
+				<canvas id="the-canvas" width="600" height="500"></canvas>
+			</div>
 			<div>		
 				<svg width="600" height="500" version="1.1"
 				 xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+                 <image x="0" y="0" width="600" height="500" xlink:href="background.png">
 				</svg>
 			</div>
-			<div>
-				<canvas id="the-canvas" width="600" height="500"></canvas>
-			</div>
-        <script src="Scripts/Bricks.js"></script>
+        <script src="Scripts/CanvasField.js"></script>    
 		<script src="scripts/raphael-min.js"></script>
-        <script src="Scripts/kinetic-v5.1.0.min.js"></script>
     </body>
 </html>
