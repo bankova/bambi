@@ -49,6 +49,7 @@
         canvasCtx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI);
         canvasCtx.fill();
         requestAnimationFrame(animationFrame);
+ 
     }
 
     animationFrame();

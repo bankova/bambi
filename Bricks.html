@@ -7,23 +7,38 @@
 	margin:0;
 	padding:0;
 	}
+    h1, ul{
+        display: inline-block;
+    }
+    h1 {
+        margin-right: 50px;
+    }
+    header{
+        height: 80px;
+    }
 	canvas{ position: absolute;
 				left: 0px;
-				top: 0px;}
+				top: 80px;}
         svg, #the-canvas { border: 2px solid black; }
     </style>
 </head>
     <body>
+        <header>
+            <h1>Teleric Academy Bricks</h1>
+            <ul>
+                <li><a href="#" id="new-game">New Game</a></li>
+            </ul>
+        </header>
 			<div>		
-				<svg width="900" height="600" version="1.1"
+				<svg width="600" height="500" version="1.1"
 				 xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
 				</svg>
 			</div>
 			<div>
-				<canvas id="the-canvas" width="900" height="600"></canvas>
+				<canvas id="the-canvas" width="600" height="500"></canvas>
 			</div>
         <script src="Scripts/Bricks.js"></script>
 		<script src="scripts/raphael-min.js"></script>
-		<script src="scripts/TelerikLogo.js"></script>
+        <script src="Scripts/kinetic-v5.1.0.min.js"></script>
     </body>
 </html>
