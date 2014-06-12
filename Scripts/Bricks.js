@@ -15,11 +15,52 @@ function game(canvasContainerId) {
     var theball = ball(),
         bricks = [];
 
+    function drawBricks() {
+        // some setup
+        var startpointX = 20,
+            startpointY = 20,
+            brickHeight = 2,
+            brickWidth = 20;
+
+        while (startpointX + brickWidth < theCanvas.width) {
+            var newBrick = brick(startpointX, startpointY, brickWidth, brickHeight);            
+            bricks.push(newBrick)
+            //update position
+            startpointX += 3 * brickWidth;
+        }
+
+        // replacing the function after 1st drawing of all the bricks
+        drawBricks = function () { 
+            for (var i = 0; i< bricks.length ; i++)
+            {
+                var currentBrick = bricks[i].draw();
+            }
+        }
+    }
+
     function drawGameField() {
         canvasCtx.clearRect(0, 0, theCanvas.width, theCanvas.height);
         theball.draw();
-        drawBricks(30, 50, 40, 20, 1); // Move me when drawBricks() is moved
+        checkForColision();        
+        drawBricks();
+        if (bricks.length === 0) {
+            alert("Game over!");
+            return;
+        }
         requestAnimationFrame(drawGameField);
+    }
+
+    function checkForColision() {
+        for (var i = 0; i < bricks.length; i++) {
+            var aBrick = bricks[i];
+            if (aBrick.startpointY + aBrick.height >= theball.y - theball.radius &&
+                aBrick.startpointX <= theball.x + theball.radius &&
+                theball.x - theball.radius <= aBrick.startpointX + aBrick.width) {
+                bricks.splice(i, 1);
+                theball.down *= -1;                
+                break;
+            }
+        }        
     }
 
     self.startGame = function () {        
@@ -30,60 +71,65 @@ function game(canvasContainerId) {
 }
 
 function ball() {
-    var self = {},
-        radius = 10,
-        speed = 5,
-        right = +1,
-        down = +1;
+    var self = {},        
+        speed = 5;
+
+    self.radius = 10;
+    self.right = +1;
+    self.down = +1;
 
     self.x = Math.floor(theCanvas.width / 2);
     self.y = Math.floor(theCanvas.height / 2);
 
     self.draw = function () {
-        self.x += speed * right;
-        self.y += speed * down;
+        self.x += speed * self.right;
+        self.y += speed * self.down;
 
-        if (right == +1 && self.x == theCanvas.width - radius) {
-            right = -1;
-            self.x += speed * right;
+        if (self.right == +1 && self.x == theCanvas.width - self.radius) {
+            self.right = -1;
+            self.x += speed * self.right;
         }
 
-        if (down == +1 && self.y == theCanvas.height - radius) {
-            down = -1;
-            self.y += speed * down;
+        if (self.down == +1 && self.y == theCanvas.height - self.radius) {
+            self.down = -1;
+            self.y += speed * self.down;
         }
 
-        if (right == -1 && self.x == radius) {
-            right = +1;
-            self.x += speed * right;
+        if (self.right == -1 && self.x == self.radius) {
+            self.right = +1;
+            self.x += speed * self.right;
         }
 
-        if (down == -1 && self.y == radius) {
-            down = +1;
-            self.y += speed * down;
+        if (self.down == -1 && self.y == self.radius) {
+            self.down = +1;
+            self.y += speed * self.down;
         }
 
         canvasCtx.fillStyle = '#FF0000';
         canvasCtx.beginPath();
-        canvasCtx.arc(self.x, self.y, radius, 0, 2 * Math.PI);
+        canvasCtx.arc(self.x, self.y, self.radius, 0, 2 * Math.PI);
         canvasCtx.fill();
     }
 
     return self;
 }
 
-// Everything below Needs to be somewhere else
-function drawBricks(startpointX, startpointY, widthBrick, heightBrick, linewidth) {
-    while (startpointX + widthBrick < theCanvas.width) {
-        canvasCtx.beginPath();
-        canvasCtx.rect(startpointX, startpointY, widthBrick, heightBrick);
-        canvasCtx.fillStyle = 'green';
-        canvasCtx.fill();
-        canvasCtx.lineWidth = linewidth;
-        canvasCtx.strokeStyle = 'black';
-        canvasCtx.stroke();
+function brick(startpointX, startpointY, width, height) {
+    var self = {};
 
-        //update position
-        startpointX += widthBrick + 10;
+    self.startpointX = startpointX;
+    self.startpointY = startpointY;
+    self.width = width;
+    self.height = height;
+
+    self.draw = function () {
+        canvasCtx.beginPath();
+        canvasCtx.rect(self.startpointX, self.startpointY, self.width, self.height);
+        canvasCtx.fillStyle = 'white';
+        canvasCtx.fill();
+        canvasCtx.lineWidth = self.width;
+        canvasCtx.strokeStyle = 'blue';
+        canvasCtx.stroke();
     }
+    return self;
 }
