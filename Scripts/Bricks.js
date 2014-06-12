@@ -1,5 +1,6 @@
 ﻿window.onload = function () {    
-    var bricksGame = game("the-canvas");    
+    var bricksGame = game("the-canvas");
+
     bricksGame.startGame();    
 }
 
@@ -13,20 +14,21 @@ function game(canvasContainerId) {
     canvasCtx = theCanvas.getContext("2d");    
 
     var theball = ball(),
-        bricks = [];
+        bricks = [],
+        gamePad = pad();
 
     function drawBricks() {
         // some setup
         var startpointX = 20,
-            startpointY = 20,
-            brickHeight = 2,
-            brickWidth = 20;
+            startpointY = 30,
+            brickHeight = 20,
+            brickWidth = 40;
 
         while (startpointX + brickWidth < theCanvas.width) {
             var newBrick = brick(startpointX, startpointY, brickWidth, brickHeight);            
-            bricks.push(newBrick)
+            bricks.push(newBrick);
             //update position
-            startpointX += 3 * brickWidth;
+            startpointX += 6 + brickWidth;
         }
 
         // replacing the function after 1st drawing of all the bricks
@@ -38,15 +40,30 @@ function game(canvasContainerId) {
         }
     }
 
+    function drawPad() {
+        //setup
+        var padStartX = 250,
+            padStartY = 470,
+            padWidth = 100,
+            padHeight = 10;
+
+        gamePad = pad(padStartX, padStartY, padWidth, padHeight);
+        gamePad.draw();
+
+    }
+
     function drawGameField() {
         canvasCtx.clearRect(0, 0, theCanvas.width, theCanvas.height);
         theball.draw();
-        checkForColision();        
+        checkForColision();
         drawBricks();
+        drawPad()
+        
         if (bricks.length === 0) {
             alert("Game over!");
             return;
         }
+
         requestAnimationFrame(drawGameField);
     }
 
@@ -60,7 +77,15 @@ function game(canvasContainerId) {
                 theball.down *= -1;                
                 break;
             }
-        }        
+        }
+        var aPad = gamePad;
+
+        if (theball.y + theball.radius >= aPad.padStartY &&
+            aPad.padStartX <= theball.x + theball.radius &&
+                theball.x - theball.radius <= aPad.padStartX + aBrick.width
+            ) {
+            theball.down *= -1;
+        }
     }
 
     self.startGame = function () {        
@@ -125,11 +150,28 @@ function brick(startpointX, startpointY, width, height) {
     self.draw = function () {
         canvasCtx.beginPath();
         canvasCtx.rect(self.startpointX, self.startpointY, self.width, self.height);
-        canvasCtx.fillStyle = 'white';
+        canvasCtx.fillStyle = 'darkgreen';
+        //canvasCtx.lineWidth = self.width;
         canvasCtx.fill();
-        canvasCtx.lineWidth = self.width;
-        canvasCtx.strokeStyle = 'blue';
         canvasCtx.stroke();
     }
     return self;
 }
+
+function pad(padStartX, padStartY, padWidth, padHeight) {
+    var self = {};
+
+    self.padStartX = padStartX;
+    self.padStartY = padStartY;
+    self.padWidth = padWidth;
+    self.padHeight = padHeight;
+
+    self.draw = function () {
+        canvasCtx.beginPath();
+        canvasCtx.rect(self.padStartX, self.padStartY, self.padWidth, self.padHeight);
+        canvasCtx.fill();
+        canvasCtx.stroke();
+    }
+    return self;
+}
+
