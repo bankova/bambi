@@ -1,38 +1,42 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Bricks</title>
+    <title>Bricks game</title>
     <style>
 	body, canvas, svg, div{
-	margin:0;
-	padding:0;
+	    margin:0;
+	    padding:0;
 	}
-    h1, ul{
+    button{
+        padding: 15px;
         display: inline-block;
+        border-radius: 10px;
+        background-color: darkgreen;
+		color:white;
     }
     h1 {
         margin-right: 50px;
+		margin-left: 50px;		
+        display: inline-block;
     }
     header{
         height: 80px;
     }
-	canvas{ position: absolute;
-				left: 0px;
-				top: 80px;
-
+	canvas{ 
+        position: absolute;
+		left: 0px;
+		top: 80px;
 	}
-        svg, #the-canvas { 
-            border: 2px solid black; 
-            align-items:center;
-        }
+    svg, #the-canvas { 
+        border: 2px solid black; 
+        align-items:center;
+    }
     </style>
 </head>
     <body>
         <header>
             <h1>Telerik Academy Bricks</h1>
-            <ul>
-                <li><a href="#" id="new-game">New Game</a></li>
-            </ul>
+                <button id="newgame">New Game</button>         
         </header>
         	<div>
 				<canvas id="the-canvas" width="600" height="500"></canvas>

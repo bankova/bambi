@@ -1,17 +1,19 @@
 ﻿window.onload = function () {    
     var bricksGame = game("the-canvas");
-
     bricksGame.startGame();    
 }
 
 var theCanvas;
 var canvasCtx;
+var newGameButton = document.querySelector('#newgame');
+newGameButton.addEventListener('click', restart, false);
 
 function game(canvasContainerId) {
     var self = {};        
 
     theCanvas = document.getElementById(canvasContainerId);
-    canvasCtx = theCanvas.getContext("2d");    
+    canvasCtx = theCanvas.getContext("2d");
+    canvasCtx.font = 'italic 40pt Calibri';
 
     var theball = ball(),
         bricks = [],
@@ -44,14 +46,18 @@ function game(canvasContainerId) {
         canvasCtx.clearRect(0, 0, theCanvas.width, theCanvas.height);
         theball.draw();
         if (theball.HasHitBottom) {
-            alert("Game over!");
+            canvasCtx.fillStyle = 'red';
+            canvasCtx.fillText('Game over!', 150, 100);
+            canvasCtx.fillText('You lose!', 170, 200);
             return;
         };
         
         drawBricks();
 
         if (bricks.length === 0) {
-            alert("You win!"); // or draw ultra-mega cool animation :)
+            canvasCtx.fillStyle = 'green';
+            canvasCtx.fillText('Game over!', 150, 100);
+            canvasCtx.fillText('You win!', 170, 200);
             return;
         }
 
@@ -199,4 +205,8 @@ function pad() {
     }
 
     return self;
+}
+
+function restart() {
+    document.location.href = "";
 }
