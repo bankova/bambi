@@ -58,21 +58,19 @@ window.onload = function () {
 
             checkForColision();
             gamePad.draw();
+			$('#score').text('Score:'+self.score);
             requestAnimationFrame(drawGameField);
         }
-
        
         //Brick and ball
         function checkForColision() {
-            
-
             for (var i = 0; i < bricks.length; i++) {
                 var aBrick = bricks[i];
                 if (aBrick.startpointY + aBrick.height >= theball.y - theball.radius &&
                     aBrick.startpointX <= theball.x + theball.radius &&
                     theball.x - theball.radius <= aBrick.startpointX + aBrick.width) {
                     bricks.splice(i, 1);
-                    alert(self.score += self.bonus);
+                    self.score += self.bonus;
                     theball.down *= -1;
                     break;
                 }
