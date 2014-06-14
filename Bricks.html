@@ -7,16 +7,22 @@
 	    margin:0;
 	    padding:0;
 	}
-    button{
-        padding: 15px;
-        display: inline-block;
-        border-radius: 10px;
+    #newgame, #nextlevel{
+        padding: 10px;      
         background-color: darkgreen;
-		color:white;
+        color:white;
+    }
+    #newgame{
+        display: inline-block;
+    }
+    #nextlevel{
+        position: absolute;
+        top: 320px;
+        left: 220px;
+        visibility: hidden;
     }
     h1 {
         margin-right: 50px;
-		margin-left: 50px;		
         display: inline-block;
     }
     header{
@@ -47,6 +53,7 @@
                  <image x="0" y="0" width="600" height="500" xlink:href="background.png"></image>
 				</svg>
 			</div>
+        <button id="nextlevel">Next level</button>
         <script src="Scripts/Bricks.js"></script>
     </body>
 </html>
