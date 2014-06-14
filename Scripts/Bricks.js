@@ -21,6 +21,8 @@ window.onload = function () {
             gamePad = pad();
 
         self.level = 0;
+        self.bonus = 100;
+        self.score = 0;
 
         function drawBricks() {
                 for (var i = 0; i < bricks.length ; i++) {
@@ -62,16 +64,20 @@ window.onload = function () {
        
         //Brick and ball
         function checkForColision() {
+            
+
             for (var i = 0; i < bricks.length; i++) {
                 var aBrick = bricks[i];
                 if (aBrick.startpointY + aBrick.height >= theball.y - theball.radius &&
                     aBrick.startpointX <= theball.x + theball.radius &&
                     theball.x - theball.radius <= aBrick.startpointX + aBrick.width) {
                     bricks.splice(i, 1);
+                    alert(self.score += self.bonus);
                     theball.down *= -1;
                     break;
                 }
             }
+
 
             if (theball.y + theball.radius >= gamePad.padStartY &&
                 gamePad.padStartX <= theball.x - theball.radius &&
@@ -234,4 +240,9 @@ window.onload = function () {
 
     function restart() {
         document.location.href = "";
+    }
+    
+    function result() {
+        
+
     }
