@@ -1,0 +1,62 @@
+﻿body, canvas, svg, div, footer{
+	    margin:0;
+	    padding:0;
+	}
+    .center{
+        width: 604px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #newgame, #nextlevel{
+        padding: 10px;      
+        background-color: darkgreen;
+        color:white;
+    }
+    #newgame{
+        display: inline-block;
+		margin-left:50px;
+    }
+    #nextlevel{
+        position: absolute;
+        top: 320px;
+        left: 590px;
+        visibility: hidden;
+    }
+    h1 {
+        margin-left: 5px;
+        margin-right: 70px;
+        display: inline-block;
+    }
+    header{
+        height: 80px;
+        width: 604px;
+        background-color: limegreen;
+        margin-left: auto;
+        margin-right: auto;
+    }
+	canvas{ 
+        position: absolute;
+		top: 80px;
+	}
+    svg, #the-canvas { 
+        border: 2px solid black; 
+    }
+	#score{
+		display: inline-block;
+        margin-left: 50px;
+		margin-right: 50px;
+		font-weight: 700;
+		font-size: 20px;
+	}
+    footer {
+        margin-top: -21px;
+        width: 604px;
+        height: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background-color: limegreen;
+    }
+    p {
+        padding-top: 20px;
+    }
