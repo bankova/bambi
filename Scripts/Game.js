@@ -8,7 +8,7 @@ newGameButton.addEventListener('click', bricksGame.restart, false);
 window.onload = function () {
     bricksGame.startGame();
     bricksGame.updateLevel();
-}    
+};
 
     function Game(canvasContainerId) {
         var self = {};
@@ -36,20 +36,20 @@ window.onload = function () {
 
             if (!theball.isStopped) {
                 theball.draw();
-            };
+            }
 
             if (theball.HasHitBottom) {
                 canvasCtx.fillStyle = 'red';
-                canvasCtx.fillText('Game over!', 150, 100);
-                canvasCtx.fillText('You lose!', 170, 200);
+                canvasCtx.fillText('Game over!', 170, 100);
+                canvasCtx.fillText('You lose!', 190, 200);
                 return;
-            };
+            }
 
             drawBricks();
 
             if (bricks.length === 0) {
                 canvasCtx.fillStyle = 'green';
-                canvasCtx.fillText('You win!', 170, 200);
+                canvasCtx.fillText('You win!', 200, 200);
 
                 var nextLevelButton = document.querySelector('#nextlevel');
                 nextLevelButton.style.visibility = 'visible';
@@ -86,11 +86,11 @@ window.onload = function () {
 
         self.startGame = function () {
             requestAnimationFrame(drawGameField);
-        }
+        };
 
-        self.restart = function() {
+        self.restart = function () {
             document.location.href = "";
-        }
+        };
 
         self.updateLevel=function() {
             if (self.level < 5) {

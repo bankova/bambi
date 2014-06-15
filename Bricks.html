@@ -3,10 +3,15 @@
 <head>
     <title>Bricks game</title>
     <style>
-	body, canvas, svg, div{
+	body, canvas, svg, div, footer{
 	    margin:0;
 	    padding:0;
 	}
+    .center{
+        width: 608px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     #newgame, #nextlevel{
         padding: 10px;      
         background-color: darkgreen;
@@ -14,36 +19,52 @@
     }
     #newgame{
         display: inline-block;
-		margin-left:30px;
+		margin-left:50px;
     }
     #nextlevel{
         position: absolute;
         top: 320px;
-        left: 220px;
+        left: 630px;
         visibility: hidden;
     }
     h1 {
-        margin-right: 50px;
+        margin-left: 5px;
+        margin-right: 70px;
         display: inline-block;
     }
     header{
         height: 80px;
+        width: 608px;
+        background-color: limegreen;
+        margin-left: auto;
+        margin-right: auto;
     }
 	canvas{ 
         position: absolute;
-		left: 0px;
 		top: 80px;
 	}
     svg, #the-canvas { 
         border: 2px solid black; 
-        align-items:center;
     }
 	#score{
 		display: inline-block;
+        margin-left: 50px;
 		margin-right: 50px;
 		font-weight: 700;
 		font-size: 20px;
 	}
+    footer {
+        margin-top: -20px;
+        width: 608px;
+        height: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background-color: limegreen;
+    }
+    p {
+        padding-top: 20px;
+    }
     </style>
 </head>
     <body>
@@ -52,16 +73,21 @@
 			<div id='score'></div>
             <button id="newgame">New Game</button>         
         </header>
-        	<div>
+        	<div class="center">
 				<canvas id="the-canvas" width="600" height="500"></canvas>
 			</div>
-			<div>		
+			<div class="center">		
 				<svg width="600" height="500" version="1.1"
 				 xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
                  <image x="0" y="0" width="600" height="500" xlink:href="background.png"></image>
 				</svg>
 			</div>
         <button id="nextlevel">Next level</button>
+        <footer>
+            <p>Created by team "Bambi"
+                <a href="https://github.com/bankova/bambi/">Github</a>
+            </p>
+        </footer>
 		<script src="libs/jquery-2.1.1.min.js"></script>
         <script src="Scripts/Pad.js"></script>
         <script src="Scripts/Ball.js"></script>
